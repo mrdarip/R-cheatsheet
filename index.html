@@ -211,6 +211,12 @@
         <p>The group of all strings that our "Security Guard" matrix thinks look like a perfect zero. For a good code,
             only the actual zero string should map to zero.</p>
     </main>
+
+    <script>
+        document.querySelectorAll("code").forEach(c =>
+            c.onclick = () => navigator.clipboard.writeText(c.innerText)
+        );
+    </script>
 </body>
 
 </html>
