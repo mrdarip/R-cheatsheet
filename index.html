@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Glossary: Encoding Messages with Homomorphisms</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+    <main class="container">
+
+<table >
+    <thead>
+        <tr>
+            <th colspan="6">I Have</th>
+            <th>I Want</th>
+            <th>R Spell</th>
+        </tr>
+        <tr>
+            <th>\( m \)</th>
+            <th>\( G \)</th>
+            <th>\( H \)</th>
+            <th>\( r/c \)</th>
+            <th>\( n, k \)</th>
+            <th>\( S \)</th>
+            <th>Objetive</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<hr>
+
+<h1>Sección: Explicación Extra Fácil (Modo Novato)</h1>
+
+<h3 id="easy-encoding">Codificar (Mensaje + Matriz G)</h3>
+<p>Imagina que tu mensaje es una persona desnuda. La matriz \( G \) es una tienda de ropa que le añade capas de protección. Al multiplicar el mensaje por \( G \), obtienes el "Codeword", que es la persona con su armadura puesta para el viaje.</p>
+
+
+<h3 id="easy-h-matrix">La Matriz H (El Filtro)</h3>
+<p>Es una rejilla de seguridad. Si el mensaje está perfecto, pasa por la rejilla sin tocar nada (da resultado 0). Si el mensaje está "roto" o deformado por el ruido, golpeará la rejilla y hará sonar una alarma.</p>
+
+<h3 id="easy-syndrome">El Síndrome (La Alarma)</h3>
+<p>No es el error en sí, es el sonido que hace la rejilla (Matriz \( H \)). Dependiendo de qué nota suene (qué números tenga el síndrome), podemos saber exactamente qué parte del mensaje se rompió para poder arreglarlo.</p>
+
+<h3 id="easy-dmin">Distancia Mínima (El Espaciado)</h3>
+<p>Imagina que las palabras del código son barcos en el mar. Si están muy cerca, una tormenta (un error) puede empujar un barco y hacer que parezca otro. Si la distancia mínima es grande, los barcos están muy lejos entre sí y es muy difícil confundirlos aunque haya tormenta.</p>
+
+<h3 id="easy-systematic">Código Sistemático</h3>
+<p>Es cuando el mensaje original se queda igual al principio y solo le pegamos los bits de seguridad al final. Es más fácil porque no tienes que hacer matemáticas para saber qué decía el mensaje original, ¡solo tienes que mirar los primeros números!</p>
+
+
+
+
+
+
+
+
+
+    <h1>Glossary of Terms: Encoding Messages</h1>
+    <p>This glossary provides technical definitions for terms related to linear block codes and group homomorphisms as used in message encoding.</p>
+
+    <h2 id="binary-group">Binary Group \( (\mathbb{Z}_2^n, \oplus) \)</h2>
+    <p>The set of all binary strings of length \( n \). It forms a group under the operation of bitwise addition modulo 2 (XOR), denoted by \( \oplus \). In this group, the identity element is the string of all zeros, and every element is its own inverse.</p>
+    <p>See also: <a href="#homomorphism">Homomorphism</a>, <a href="#codeword">Codeword</a>.</p>
+
+    <h2 id="homomorphism">Homomorphism</h2>
+    <p>A function \( \phi: G \to H \) between two groups that preserves the group operation, such that \( \phi(a \cdot b) = \phi(a) \ast \phi(b) \). In coding theory, an <a href="#encoding-map">encoding map</a> is a homomorphism from a smaller <a href="#binary-group">binary group</a> to a larger one.</p>
+    <p>See also: <a href="#encoding-map">Encoding Map</a>, <a href="#kernel">Kernel</a>.</p>
+
+    <h2 id="encoding-map">Encoding Map</h2>
+    <p>An injective (one-to-one) <a href="#homomorphism">homomorphism</a> \( \phi: \mathbb{Z}_2^k \to \mathbb{Z}_2^n \) that transforms a <a href="#message">message</a> of length \( k \) into a <a href="#codeword">codeword</a> of length \( n \), where \( n > k \). This process adds redundancy to allow for error detection and correction.</p>
+    <p>See also: <a href="#generator-matrix">Generator Matrix</a>, <a href="#codeword">Codeword</a>.</p>
+
+    <h2 id="message">Message</h2>
+    <p>The original data string of length \( k \) bits that needs to be transmitted. It is an element of the domain \( \mathbb{Z}_2^k \) of the <a href="#encoding-map">encoding map</a>.</p>
+    <p>See also: <a href="#encoding-map">Encoding Map</a>.</p>
+
+    <h2 id="codeword">Codeword</h2>
+    <p>The resulting string of length \( n \) bits after a <a href="#message">message</a> has been processed by the <a href="#encoding-map">encoding map</a>. The set of all possible codewords is the image of the encoding map \( \text{Im}(\phi) \).</p>
+    <p>See also: <a href="#hamming-weight">Hamming Weight</a>, <a href="#minimum-distance">Minimum Distance</a>.</p>
+
+    <h2 id="generator-matrix">Generator Matrix (\( G \))</h2>
+    <p>A matrix used to define a linear <a href="#encoding-map">encoding map</a>. If \( x \) is a <a href="#message">message</a> vector, the corresponding <a href="#codeword">codeword</a> \( c \) is calculated as \( c = xG \). The rows of this matrix form a basis for the code.</p>
+    <p>See also: <a href="#parity-check-matrix">Parity-Check Matrix</a>.</p>
+
+    <h2 id="hamming-weight">Hamming Weight (\( \omega \))</h2>
+    <p>The number of non-zero coordinates in a binary string. For a <a href="#codeword">codeword</a> \( x \), \( \omega(x) \) represents the number of '1's it contains.</p>
+    <p>See also: <a href="#hamming-distance">Hamming Distance</a>.</p>
+
+    <h2 id="hamming-distance">Hamming Distance (\( d \))</h2>
+    <p>The number of positions at which two binary strings \( x \) and \( y \) of the same length differ. It can be calculated as the <a href="#hamming-weight">Hamming weight</a> of their XOR sum: \( d(x, y) = \omega(x \oplus y) \).</p>
+    <p>See also: <a href="#minimum-distance">Minimum Distance</a>.</p>
+
+    <h2 id="minimum-distance">Minimum Distance (\( d_{min} \))</h2>
+    <p>The smallest <a href="#hamming-distance">Hamming distance</a> between any two distinct <a href="#codeword">codewords</a> in a code. This value determines the error-detecting and error-correcting capabilities of the code. A code can detect up to \( d_{min} - 1 \) errors and correct up to \( \lfloor (d_{min}-1)/2 \rfloor \) errors.</p>
+    <p>See also: <a href="#hamming-distance">Hamming Distance</a>.</p>
+
+    <h2 id="parity-check-matrix">Parity-Check Matrix (\( H \))</h2>
+    <p>A matrix used to verify if a received string is a valid <a href="#codeword">codeword</a>. A vector \( c \) is a codeword if and only if \( H \cdot c^T = \mathbf{0} \). The <a href="#kernel">kernel</a> of the linear map defined by \( H \) is exactly the set of all codewords.</p>
+    <p>See also: <a href="#syndrome">Syndrome</a>, <a href="#kernel">Kernel</a>.</p>
+
+    <h2 id="syndrome">Syndrome</h2>
+    <p>The vector \( S \) obtained by multiplying the <a href="#parity-check-matrix">parity-check matrix</a> \( H \) by a received (potentially corrupted) vector \( r \): \( S = H \cdot r^T \). If the syndrome is zero, the received vector is a valid <a href="#codeword">codeword</a>.</p>
+    <p>See also: <a href="#decoding">Decoding</a>, <a href="#error-vector">Error Vector</a>.</p>
+
+    <h2 id="error-vector">Error Vector (\( e \))</h2>
+    <p>A binary string representing the errors introduced during transmission. If \( c \) is the sent <a href="#codeword">codeword</a> and \( r \) is the received string, then \( r = c \oplus e \). The <a href="#syndrome">syndrome</a> of \( r \) is solely determined by the error vector: \( H \cdot r^T = H \cdot e^T \).</p>
+    <p>See also: <a href="#syndrome">Syndrome</a>.</p>
+
+    <h2 id="decoding">Decoding</h2>
+    <p>The process of recovering the original <a href="#message">message</a> from the received vector. In "Syndrome Decoding," the <a href="#syndrome">syndrome</a> is used to identify the most likely <a href="#error-vector">error vector</a>, which is then XORed with the received vector to retrieve the <a href="#codeword">codeword</a>.</p>
+    <p>See also: <a href="#syndrome">Syndrome</a>, <a href="#encoding-map">Encoding Map</a>.</p>
+
+    <h2 id="kernel">Kernel</h2>
+    <p>For a <a href="#homomorphism">homomorphism</a> \( \phi: G \to H \), the kernel is the set of all elements in \( G \) that map to the identity element in \( H \). For a valid <a href="#encoding-map">encoding map</a>, the kernel should only contain the zero vector to ensure the map is injective.</p>
+    <p>See also: <a href="#parity-check-matrix">Parity-Check Matrix</a>.</p>
+
+    <hr>
+
+    <h1>Extra Easy Explained Section</h1>
+    <p>If you found the math above a bit confusing, here are the same concepts explained simply!</p>
+
+    <h3>Binary Group (The Sandbox)</h3>
+    <p>Imagine a world where the only numbers are 0 and 1, and adding \( 1 + 1 \) gives you 0. This "sandbox" is where all our messages live.</p>
+
+    <h3>Homomorphism (The Rule-Follower)</h3>
+    <p>A special kind of translation that respects the rules of our sandbox. If you add two messages and then translate them, it’s the same as translating them first and then adding them together.</p>
+
+    <h3>Encoding Map (The Bodyguard)</h3>
+    <p>A way to take your short message and turn it into a longer one by adding extra "check" bits. These extra bits act like bodyguards that protect your information during a messy trip through a noisy wire.</p>
+
+    <h3>Message (The Secret)</h3>
+    <p>The original, short piece of information you want to send to a friend.</p>
+
+    <h3>Codeword (The Disguise)</h3>
+    <p>The version of your secret that has been "dressed up" with extra bits so it can survive errors. It's what actually gets sent.</p>
+
+    <h3>Generator Matrix (The Blueprint)</h3>
+    <p>The instruction manual or "stamping machine" that tells you exactly how to add those extra bits to your message to create a codeword.</p>
+
+    <h3>Hamming Weight (The 'One' Count)</h3>
+    <p>Just a fancy way of saying: "How many 1s are in this string?"</p>
+
+    <h3>Hamming Distance (The Difference)</h3>
+    <p>How many bits you have to flip to turn one string into another. If "101" and "110" are compared, they differ in two spots, so the distance is 2.</p>
+
+    <h3>Minimum Distance (The Safety Gap)</h3>
+    <p>The smallest possible difference between any two valid codewords. The bigger this gap, the harder it is for a few errors to accidentally turn one valid message into a different valid message.</p>
+
+    <h3>Parity-Check Matrix (The Security Guard)</h3>
+    <p>A special tool that looks at a received string and checks if it "fits the pattern." If it doesn't, the guard knows an error happened.</p>
+
+    <h3>Syndrome (The Error Alarm)</h3>
+    <p>A small code generated by the Security Guard. If the syndrome is all zeros, everything is fine. If it's not zero, it's an alarm that points toward where the error might be.</p>
+
+    <h3>Error Vector (The Damage)</h3>
+    <p>A map of which bits got flipped (changed from 0 to 1 or vice versa) while the message was traveling.</p>
+
+    <h3>Decoding (The Recovery)</h3>
+    <p>The process of looking at the damaged message, using the syndrome alarm to fix the errors, and getting your original secret back.</p>
+
+    <h3>Kernel (The Zero-Makers)</h3>
+    <p>The group of all strings that our "Security Guard" matrix thinks look like a perfect zero. For a good code, only the actual zero string should map to zero.</p>
+</main>
+</body>
+</html>
